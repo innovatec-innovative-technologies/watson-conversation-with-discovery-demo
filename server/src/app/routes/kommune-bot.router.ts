@@ -8,14 +8,10 @@ export class KommuneBotRouter {
     private expressRouter: express.Router;
 
     constructor() {
-        this.createRouter();
+        this.configRoutes();
     }
-
-    public getRouter(): express.Router {
-        return this.expressRouter;
-    }
-
-    private createRouter() {
+ 
+    private configRoutes() {
         console.log(ServerConfig.LOG_PREFIX, "Creating router for base paths");
         this.expressRouter = express.Router();
 
@@ -26,6 +22,10 @@ export class KommuneBotRouter {
         console.log(ServerConfig.LOG_PREFIX, "Setting up conversation api routes");
         let discoveryApiRouter = new DiscoveryRouter();
         this.expressRouter.use('/api/discovery', discoveryApiRouter.getExpressRouter());
+    }
+
+    public getRouter(): express.Router {
+        return this.expressRouter;
     }
 }
 

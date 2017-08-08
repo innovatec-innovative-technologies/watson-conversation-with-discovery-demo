@@ -16,10 +16,6 @@ export class ConversationRouter {
         this.createRouter();
     }
 
-    public getExpressRouter(): express.Router {
-        return this.expressRouter;
-    }
-
     private createRouter() {
         //create a router for api routes
         this.expressRouter = express.Router();
@@ -82,5 +78,9 @@ export class ConversationRouter {
                 });
             }
         }
+    }
+
+    public getExpressRouter(): express.Router {
+        return this.expressRouter;
     }
 }

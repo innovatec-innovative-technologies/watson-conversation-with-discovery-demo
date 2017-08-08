@@ -13,10 +13,6 @@ export class DiscoveryRouter {
         this.createRouter();
     }
 
-    public getExpressRouter(): express.Router {
-        return this.expressRouter;
-    }
-
     private createRouter() {
         // create a router for api routes
         this.expressRouter = express.Router();
@@ -61,6 +57,10 @@ export class DiscoveryRouter {
                 });
             }
         });
+    } 
+
+    public getExpressRouter(): express.Router {
+        return this.expressRouter;
     }
 }
 
