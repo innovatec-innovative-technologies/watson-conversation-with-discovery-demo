@@ -12,7 +12,9 @@ import { ServerConfig } from "../config/config";
 export class KommuneBotApplication {
     expressApp: express.Application;
 
+
     public config(pathToClient: string) {
+
         console.log(ServerConfig.LOG_PREFIX, "Creating express application");
         this.expressApp = express();
         this.expressApp.use(bodyParser.urlencoded({ extended: false }));
@@ -22,8 +24,6 @@ export class KommuneBotApplication {
         console.log(ServerConfig.LOG_PREFIX, "Configuring routes");
         let kommuneBotRouter = new KommuneBotRouter();
         this.expressApp.use("/", kommuneBotRouter.getRouter());
-
-        console.log(ServerConfig.LOG_PREFIX, "Setup router to catch all other GET routes and return the index file thats built");
         this.expressApp.get("*", (req: express.Request, res: express.Response) => {
             res.sendFile(pathToClient + '/index.html');
         });
